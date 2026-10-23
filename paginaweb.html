@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Porsche - Ingeniería y Pasión Deportiva</title>
+    <!-- Tailwind CSS desde CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Iconos Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap');
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #0b0f19;
+            color: #f3f4f6;
+        }
+        .glass-card {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .modal {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal-closed {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .modal-open {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-red-600 selection:text-white">
+
+    <!-- BARRA DE NAVEGACIÓN -->
+    <header class="sticky top-0 z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <span class="text-2xl font-black tracking-widest text-white uppercase border-b-2 border-red-600 pb-0.5">PORSCHE</span>
+            </div>
+            
+            <nav class="hidden md:flex space-x-8 text-sm font-semibold tracking-wider text-slate-300">
+                <a href="#inicio" class="hover:text-red-500 transition-colors">INICIO</a>
+                <a href="#modelos" class="hover:text-red-500 transition-colors">MODELOS</a>
+                <a href="#historia" class="hover:text-red-500 transition-colors">HISTORIA</a>
+            </nav>
+
+            <a href="#modelos" class="bg-red-600 hover:bg-red-700 text-white px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all transform hover:scale-105 shadow-lg shadow-red-600/30">
+                Explorar
+            </a>
+        </div>
+    </header>
+
+    <!-- SECCIÓN HERO / BIENVENIDA -->
+    <section id="inicio" class="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&q=80&w=1920" 
+                 alt="Porsche Hero Background" 
+                 onerror="this.src='https://placehold.co/1920x1080/0f172a/d97706?text=PORSCHE+HERO'"
+                 class="w-full h-full object-cover object-center brightness-40">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0b0f19] via-[#0b0f19]/40 to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 max-w-5xl mx-auto text-center px-4">
+            <span class="inline-block bg-red-600/20 text-red-500 border border-red-500/30 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-6">
+                Espíritu Deportivo Imparable
+            </span>
+            <h1 class="text-5xl sm:text-7xl font-extrabold tracking-tight text-white mb-6 uppercase">
+                Conduce el <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-rose-400">Futuro</span>
+            </h1>
+            <p class="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto mb-10 font-light leading-relaxed">
+                Descubre la combinación perfecta entre diseño icónico, tecnología vanguardista y el rendimiento puro de la ingeniería alemana.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#modelos" class="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-xl font-bold uppercase tracking-wider text-sm transition-all shadow-xl shadow-red-600/30 text-center">
+                    Ver Galería de Modelos
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERÍA DE MODELOS -->
+    <section id="modelos" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl sm:text-4xl font-bold uppercase tracking-wider text-white mb-3">Modelos Destacados</h2>
+            <p class="text-slate-400 max-w-xl mx-auto">Haz clic en la ficha de cualquier modelo para consultar sus especificaciones técnicas completas.</p>
+            
+            <!-- FILTROS -->
+            <div class="flex flex-wrap justify-center gap-2 mt-8">
+                <button onclick="filterCars('todos', event)" class="filter-btn active bg-red-600 text-white px-5 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all">Todos</button>
+                <button onclick="filterCars('deportivo', event)" class="filter-btn bg-slate-800 hover:bg-slate-700 text-slate-300 px-5 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all">Deportivos</button>
+                <button onclick="filterCars('electrico', event)" class="filter-btn bg-slate-800 hover:bg-slate-700 text-slate-300 px-5 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all">Eléctricos</button>
+                <button onclick="filterCars('suv', event)" class="filter-btn bg-slate-800 hover:bg-slate-700 text-slate-300 px-5 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all">SUV / Berlina</button>
+            </div>
+        </div>
+
+        <!-- TARJETAS DE COCHES -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="car-grid">
+            
+            <!-- COCHE 1: 911 GT3 RS -->
+            <div class="car-card glass-card rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl hover:border-red-500/40 transition-all duration-300 group" data-category="deportivo">
+                <div class="relative overflow-hidden h-60">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Porsche_992_GT3_RS_Genf_2018_1Y7A5623.jpg/1280px-Porsche_992_GT3_RS_Genf_2018_1Y7A5623.jpg" 
+                         alt="Porsche 911 GT3 RS" 
+                         onerror="this.src='https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&q=80&w=800'"
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <span class="absolute top-4 right-4 bg-slate-900/80 backdrop-blur-md border border-slate-700 text-xs text-slate-200 px-3 py-1 rounded-full font-semibold">Deportivo</span>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold text-white mb-2">911 GT3 RS</h3>
+                    <p class="text-slate-400 text-sm mb-6 line-clamp-2">Rendimiento aerodinámico puro diseñado para la pista y homologado para la carretera.</p>
+                    
+                    <div class="grid grid-cols-2 gap-4 pt-4 border-t border-slate-800 mb-6 text-xs text-slate-300">
+                        <div>
+                            <span class="text-slate-500 block">Potencia</span>
+                            <span class="font-bold text-white text-sm">525 CV</span>
+                        </div>
+                        <div>
+                            <span class="text-slate-500 block">0-100 km/h</span>
+                            <span class="font-bold text-white text-sm">3.2 s</span>
+                        </div>
+                    </div>
+
+                    <button onclick="openModal('gt3rs')" class="w-full bg-slate-800 hover:bg-red-600 text-white font-semibold py-3 rounded-xl transition-colors text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                        Ver Detalles <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- COCHE 2: Taycan Turbo S -->
+            <div class="car-card glass-card rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl hover:border-red-500/40 transition-all duration-300 group" data-category="electrico">
+                <div class="relative overflow-hidden h-60">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Porsche_Taycan_Turbo_S_Genf_2020_1Y7A5318.jpg/1280px-Porsche_Taycan_Turbo_S_Genf_2020_1Y7A5318.jpg" 
+                         alt="Porsche Taycan Turbo S" 
+                         onerror="this.src='https://images.unsplash.com/photo-1611245202863-7e47a507851e?auto=format&fit=crop&q=80&w=800'"
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <span class="absolute top-4 right-4 bg-slate-900/80 backdrop-blur-md border border-slate-700 text-xs text-slate-200 px-3 py-1 rounded-full font-semibold">100% Eléctrico</span>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold text-white mb-2">Taycan Turbo S</h3>
+                    <p class="text-slate-400 text-sm mb-6 line-clamp-2">El deportivo eléctrico definitivo que combina la emoción Porsche con la movilidad del futuro.</p>
+                    
+                    <div class="grid grid-cols-2 gap-4 pt-4 border-t border-slate-800 mb-6 text-xs text-slate-300">
+                        <div>
+                            <span class="text-slate-500 block">Potencia Max</span>
+                            <span class="font-bold text-white text-sm">952 CV</span>
+                        </div>
+                        <div>
+                            <span class="text-slate-500 block">0-100 km/h</span>
+                            <span class="font-bold text-white text-sm">2.4 s</span>
+                        </div>
+                    </div>
+
+                    <button onclick="openModal('taycan')" class="w-full bg-slate-800 hover:bg-red-600 text-white font-semibold py-3 rounded-xl transition-colors text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                        Ver Detalles <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- COCHE 3: 718 Cayman GT4 RS -->
+            <div class="car-card glass-card rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl hover:border-red-500/40 transition-all duration-300 group" data-category="deportivo">
+                <div class="relative overflow-hidden h-60">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Porsche_718_Cayman_GT4_RS_1X7A6234.jpg/1280px-Porsche_718_Cayman_GT4_RS_1X7A6234.jpg" 
+                         alt="Porsche 718 Cayman GT4 RS" 
+                         onerror="this.src='https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=800'"
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <span class="absolute top-4 right-4 bg-slate-900/80 backdrop-blur-md border border-slate-700 text-xs text-slate-200 px-3 py-1 rounded-full font-semibold">Deportivo</span>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold text-white mb-2">718 Cayman GT4 RS</h3>
+                    <p class="text-slate-400 text-sm mb-6 line-clamp-2">Motor central de altas revoluciones diseñado para exprimir el máximo dinamismo en curvas.</p>
+                    
+                    <div class="grid grid-cols-2 gap-4 pt-4 border-t border-slate-800 mb-6 text-xs text-slate-300">
+                        <div>
+                            <span class="text-slate-500 block">Potencia</span>
+                            <span class="font-bold text-white text-sm">500 CV</span>
+                        </div>
+                        <div>
+                            <span class="text-slate-500 block">0-100 km/h</span>
+                            <span class="font-bold text-white text-sm">3.4 s</span>
+                        </div>
+                    </div>
+
+                    <button onclick="openModal('cayman')" class="w-full bg-slate-800 hover:bg-red-600 text-white font-semibold py-3 rounded-xl transition-colors text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                        Ver Detalles <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- COCHE 4: Panamera Turbo E-Hybrid -->
+            <div class="car-card glass-card rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl hover:border-red-500/40 transition-all duration-300 group" data-category="suv">
+                <div class="relative overflow-hidden h-60">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Porsche_Panamera_GTS_Genf_2019_1Y7A5291.jpg/1280px-Porsche_Panamera_GTS_Genf_2019_1Y7A5291.jpg" 
+                         alt="Porsche Panamera" 
+                         onerror="this.src='https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&q=80&w=800'"
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <span class="absolute top-4 right-4 bg-slate-900/80 backdrop-blur-md border border-slate-700 text-xs text-slate-200 px-3 py-1 rounded-full font-semibold">Berlina Híbrida</span>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold text-white mb-2">Panamera E-Hybrid</h3>
+                    <p class="text-slate-400 text-sm mb-6 line-clamp-2">El equilibrio perfecto entre el confort de una berlina de lujo y las prestaciones de un superdeportivo.</p>
+                    
+                    <div class="grid grid-cols-2 gap-4 pt-4 border-t border-slate-800 mb-6 text-xs text-slate-300">
+                        <div>
+                            <span class="text-slate-500 block">Potencia</span>
+                            <span class="font-bold text-white text-sm">680 CV</span>
+                        </div>
+                        <div>
+                            <span class="text-slate-500 block">Vel. Máxima</span>
+                            <span class="font-bold text-white text-sm">315 km/h</span>
+                        </div>
+                    </div>
+
+                    <button onclick="openModal('panamera')" class="w-full bg-slate-800 hover:bg-red-600 text-white font-semibold py-3 rounded-xl transition-colors text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                        Ver Detalles <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- COCHE 5: Cayenne Turbo GT -->
+            <div class="car-card glass-card rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl hover:border-red-500/40 transition-all duration-300 group" data-category="suv">
+                <div class="relative overflow-hidden h-60">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Porsche_Cayenne_Coupe_Turbo_GT_1X7A6221.jpg/1280px-Porsche_Cayenne_Coupe_Turbo_GT_1X7A6221.jpg" 
+                         alt="Porsche Cayenne Turbo GT" 
+                         onerror="this.src='https://images.unsplash.com/photo-1541348263662-e082662dc324?auto=format&fit=crop&q=80&w=800'"
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <span class="absolute top-4 right-4 bg-slate-900/80 backdrop-blur-md border border-slate-700 text-xs text-slate-200 px-3 py-1 rounded-full font-semibold">SUV</span>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold text-white mb-2">Cayenne Turbo GT</h3>
+                    <p class="text-slate-400 text-sm mb-6 line-clamp-2">Un SUV con alma de circuito. Espacio, potencia extrema y dinámica de conducción insuperable.</p>
+                    
+                    <div class="grid grid-cols-2 gap-4 pt-4 border-t border-slate-800 mb-6 text-xs text-slate-300">
+                        <div>
+                            <span class="text-slate-500 block">Potencia</span>
+                            <span class="font-bold text-white text-sm">659 CV</span>
+                        </div>
+                        <div>
+                            <span class="text-slate-500 block">0-100 km/h</span>
+                            <span class="font-bold text-white text-sm">3.3 s</span>
+                        </div>
+                    </div>
+
+                    <button onclick="openModal('cayenne')" class="w-full bg-slate-800 hover:bg-red-600 text-white font-semibold py-3 rounded-xl transition-colors text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                        Ver Detalles <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- COCHE 6: Macan GTS -->
+            <div class="car-card glass-card rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl hover:border-red-500/40 transition-all duration-300 group" data-category="suv">
+                <div class="relative overflow-hidden h-60">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Porsche_Macan_GTS_Genf_2020_1Y7A5276.jpg/1280px-Porsche_Macan_GTS_Genf_2020_1Y7A5276.jpg" 
+                         alt="Porsche Macan GTS" 
+                         onerror="this.src='https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&q=80&w=800'"
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <span class="absolute top-4 right-4 bg-slate-900/80 backdrop-blur-md border border-slate-700 text-xs text-slate-200 px-3 py-1 rounded-full font-semibold">Compact SUV</span>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold text-white mb-2">Macan GTS</h3>
+                    <p class="text-slate-400 text-sm mb-6 line-clamp-2">Carácter deportivo compacto para el día a día sin renunciar al ADN deportivo Porsche.</p>
+                    
+                    <div class="grid grid-cols-2 gap-4 pt-4 border-t border-slate-800 mb-6 text-xs text-slate-300">
+                        <div>
+                            <span class="text-slate-500 block">Potencia</span>
+                            <span class="font-bold text-white text-sm">440 CV</span>
+                        </div>
+                        <div>
+                            <span class="text-slate-500 block">Vel. Máxima</span>
+                            <span class="font-bold text-white text-sm">272 km/h</span>
+                        </div>
+                    </div>
+
+                    <button onclick="openModal('macan')" class="w-full bg-slate-800 hover:bg-red-600 text-white font-semibold py-3 rounded-xl transition-colors text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                        Ver Detalles <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECCIÓN HISTORIA -->
+    <section id="historia" class="bg-slate-950 border-t border-b border-slate-900 py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="text-red-500 font-bold uppercase text-xs tracking-widest">Nuestra Herencia</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2 mb-6">Más de 70 Años Creando Leyendas</h2>
+                    <p class="text-slate-400 mb-4 leading-relaxed">
+                        Desde la creación del icónico Porsche 356 por Ferdinand "Ferry" Porsche en 1948, la marca ha mantenido una filosofía inquebrantable: buscar la máxima eficiencia a través del rendimiento deportivo.
+                    </p>
+                    <p class="text-slate-400 mb-6 leading-relaxed">
+                        Con victorias legendarias en Le Mans y circuitos de todo el mundo, cada innovación desarrollada para las carreras se traslada directamente a nuestros vehículos de calle.
+                    </p>
+                    <div class="grid grid-cols-3 gap-4 border-t border-slate-800 pt-6">
+                        <div>
+                            <h4 class="text-3xl font-extrabold text-white">1948</h4>
+                            <p class="text-xs text-slate-500 mt-1">Primer Modelo (356)</p>
+                        </div>
+                        <div>
+                            <h4 class="text-3xl font-extrabold text-white">19+</h4>
+                            <p class="text-xs text-slate-500 mt-1">Victorias Le Mans</p>
+                        </div>
+                        <div>
+                            <h4 class="text-3xl font-extrabold text-white">100%</h4>
+                            <p class="text-xs text-slate-500 mt-1">Pasión Porsche</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Porsche_992_GT3_RS_Genf_2018_1Y7A5623.jpg/1280px-Porsche_992_GT3_RS_Genf_2018_1Y7A5623.jpg" 
+                         alt="Historia Porsche" 
+                         onerror="this.src='https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&q=80&w=1000'"
+                         class="rounded-2xl shadow-2xl border border-slate-800 object-cover w-full h-[450px]">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 border-t border-slate-900 py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left flex flex-col sm:flex-row justify-between items-center gap-6">
+            <div>
+                <p class="text-white font-bold text-lg tracking-wider uppercase">PORSCHE</p>
+                <p class="text-xs text-slate-500 mt-1">Página tributo sobre automóviles de alto rendimiento.</p>
+            </div>
+            <p class="text-xs text-slate-600">
+                &copy; 2026 Porsche Fans. Diseñado para proyectos web.
+            </p>
+        </div>
+    </footer>
+
+    <!-- MODAL DE INFORMACIÓN -->
+    <div id="modal" class="modal modal-closed fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+        <div class="glass-card bg-slate-900 border border-slate-800 rounded-2xl max-w-2xl w-full p-6 sm:p-8 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white bg-slate-800/80 p-2 rounded-full">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <div id="modal-content">
+                <!-- Se llena dinámicamente con JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Inicializar iconos
+        lucide.createIcons();
+
+        // Datos de especificaciones técnicas de los coches
+        const carData = {
+            gt3rs: {
+                title: "Porsche 911 GT3 RS",
+                tagline: "El rey de la pista homologado para carretera",
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Porsche_992_GT3_RS_Genf_2018_1Y7A5623.jpg/1280px-Porsche_992_GT3_RS_Genf_2018_1Y7A5623.jpg",
+                description: "El 911 GT3 RS no oculta sus intenciones: ha sido concebido sin concesiones para ofrecer el máximo rendimiento en circuito. Su radiador central único e innovador sistema aerodinámico con DRS generan niveles inéditos de carga aerodinámica.",
+                specs: {
+                    "Motor": "Atmosférico de 6 cilindros bóxer, 4.0 litros",
+                    "Potencia": "525 CV (386 kW)",
+                    "Aceleración 0-100 km/h": "3,2 segundos",
+                    "Velocidad Máxima": "296 km/h",
+                    "Par Máximo": "465 Nm",
+                    "Transmisión": "PDK de 7 velocidades"
+                }
+            },
+            taycan: {
+                title: "Porsche Taycan Turbo S",
+                tagline: "Innovación eléctrica con aceleración de infarto",
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Porsche_Taycan_Turbo_S_Genf_2020_1Y7A5318.jpg/1280px-Porsche_Taycan_Turbo_S_Genf_2020_1Y7A5318.jpg",
+                description: "El Taycan Turbo S demuestra que la electromovilidad y las prestaciones de circuito pueden ir de la mano. Con su arquitectura de 800 voltios, ofrece cargas ultrarrápidas y una aceleración repetible de nivel superdeportivo.",
+                specs: {
+                    "Motor": "Eléctrico dual (Tracción total)",
+                    "Potencia con Launch Control": "Hasta 952 CV",
+                    "Aceleración 0-100 km/h": "2,4 segundos",
+                    "Velocidad Máxima": "260 km/h",
+                    "Autonomía": "Hasta 558 km (WLTP)",
+                    "Tiempo de Carga (10-80%)": "18 minutos"
+                }
+            },
+            cayman: {
+                title: "Porsche 718 Cayman GT4 RS",
+                tagline: "Pureza sonora y motor central sin filtros",
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Porsche_718_Cayman_GT4_RS_1X7A6234.jpg/1280px-Porsche_718_Cayman_GT4_RS_1X7A6234.jpg",
+                description: "Con el motor atmosférico de altas revoluciones del GT3 instalado justo detrás de los asientos, las tomas de aire laterales detrás de las ventanas emiten una melodía inolvidable al llegar a las 9.000 rpm.",
+                specs: {
+                    "Motor": "6 cilindros bóxer atmosférico 4.0L",
+                    "Potencia": "500 CV (368 kW)",
+                    "Aceleración 0-100 km/h": "3,4 segundos",
+                    "Velocidad Máxima": "315 km/h",
+                    "Revoluciones Máximas": "9.000 rpm",
+                    "Peso en Vacío": "1.415 kg"
+                }
+            },
+            panamera: {
+                title: "Porsche Panamera Turbo E-Hybrid",
+                tagline: "El equilibrio entre dinamismo y gran turismo",
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Porsche_Panamera_GTS_Genf_2019_1Y7A5291.jpg/1280px-Porsche_Panamera_GTS_Genf_2019_1Y7A5291.jpg",
+                description: "Ofrece dos personalidades distintivas: la serenidad y la eficiencia de un modo 100% eléctrico para el día a día, y una respuesta brutal al combinar su motor V8 biturbo con el propulsor eléctrico.",
+                specs: {
+                    "Motorización": "V8 4.0L Biturbo + Motor Eléctrico",
+                    "Potencia Conjunta": "680 CV",
+                    "Aceleración 0-100 km/h": "3,2 segundos",
+                    "Velocidad Máxima": "315 km/h",
+                    "Autonomía Eléctrica": "Hasta 91 km",
+                    "Suspensión": "Porsche Active Ride"
+                }
+            },
+            cayenne: {
+                title: "Porsche Cayenne Turbo GT",
+                tagline: "El SUV deportivo por excelencia",
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Porsche_Cayenne_Coupe_Turbo_GT_1X7A6221.jpg/1280px-Porsche_Cayenne_Coupe_Turbo_GT_1X7A6221.jpg",
+                description: "Diseñado exclusivamente para ofrecer un dinamismo de conducción superlativo. Modificaciones profundas en el chasis, tracción y un escape de titanio convierten a este SUV en una auténtica bestia de circuito.",
+                specs: {
+                    "Motor": "V8 Biturbo 4.0 litros",
+                    "Potencia": "659 CV",
+                    "Aceleración 0-100 km/h": "3,3 segundos",
+                    "Velocidad Máxima": "305 km/h",
+                    "Par Motor": "850 Nm",
+                    "Chasis": "Suspensión neumática adaptativa -17mm"
+                }
+            },
+            macan: {
+                title: "Porsche Macan GTS",
+                tagline: "Agilidad urbana y carácter deportivo",
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Porsche_Macan_GTS_Genf_2020_1Y7A5276.jpg/1280px-Porsche_Macan_GTS_Genf_2020_1Y7A5276.jpg",
+                description: "Inconfundiblemente deportivo con detalles en negro, sonido apasionante y un comportamiento dinámico que desafía las leyes de la física para un vehículo de su categoría.",
+                specs: {
+                    "Motor": "V6 Biturbo 2.9 litros",
+                    "Potencia": "440 CV",
+                    "Aceleración 0-100 km/h": "4,3 segundos",
+                    "Velocidad Máxima": "272 km/h",
+                    "Transmisión": "PDK de 7 velocidades",
+                    "Tracción": "Tracción total Porsche Traction Management"
+                }
+            }
+        };
+
+        // Abrir ventana modal
+        function openModal(carKey) {
+            const data = carData[carKey];
+            if (!data) return;
+
+            let specsHtml = '';
+            for (const [label, val] of Object.entries(data.specs)) {
+                specsHtml += `
+                    <div class="bg-slate-800/50 p-3 rounded-lg border border-slate-700/50">
+                        <span class="text-xs text-slate-400 block">${label}</span>
+                        <span class="text-sm font-semibold text-white">${val}</span>
+                    </div>
+                `;
+            }
+
+            const contentHtml = `
+                <img src="${data.image}" alt="${data.title}" class="w-full h-56 object-cover rounded-xl mb-4">
+                <span class="text-xs font-bold text-red-500 uppercase tracking-widest">${data.tagline}</span>
+                <h3 class="text-3xl font-extrabold text-white mt-1 mb-3">${data.title}</h3>
+                <p class="text-slate-300 text-sm leading-relaxed mb-6">${data.description}</p>
+                
+                <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Ficha Técnica</h4>
+                <div class="grid grid-cols-2 gap-3 mb-6">
+                    ${specsHtml}
+                </div>
+            `;
+
+            document.getElementById('modal-content').innerHTML = contentHtml;
+            document.getElementById('modal').classList.remove('modal-closed');
+            document.getElementById('modal').classList.add('modal-open');
+        }
+
+        // Cerrar modal
+        function closeModal() {
+            document.getElementById('modal').classList.remove('modal-open');
+            document.getElementById('modal').classList.add('modal-closed');
+        }
+
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Filtrado de coches
+        function filterCars(category, evt) {
+            const cards = document.querySelectorAll('.car-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-red-600', 'text-white');
+                btn.classList.add('bg-slate-800', 'text-slate-300');
+            });
+
+            if(evt && evt.target) {
+                evt.target.classList.remove('bg-slate-800', 'text-slate-300');
+                evt.target.classList.add('bg-red-600', 'text-white');
+            }
+
+            cards.forEach(card => {
+                if (category === 'todos' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

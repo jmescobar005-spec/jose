@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<a href="pagina.html">Ir a la página</a>
+<html lang="es">
+    <!--es el idioma de mi página-->
+    <head>
+        <title>Inicio al HTML</title>
+        <!--Lo siguiente me sirve para que entienda las tildes-->
+        <meta charset="UTF-8">
+        <!--codificación de caracteres →
+        <-- resto del contenido de la cabecera -->
+    </head>
+<body style="background-color: rgb(160, 154, 154); border-radius: 4px; border-color: black;">
+    <!-- contenido del cuerpo -->
+    <!--Le he añadido un color de fondo y unos div para organizar mejor el contenido-->
+    <div style="text-align: center;">
+        <!-- los div me sirven para delimitar los espacios de mi página-->
+        <H1><ins>INICIO</ins></H1>
+    </div>
+    <div style="text-align: center;">
+        <h1>Esta es la página de inicio, ubicada en la carpeta ejercicio1</h1>
+        <!-- El target que he puesto me sirve para que el enlace se abra en otra pestaña diferente -->
+        <a href="./carpeta1/pagina2.html" target="_blank">pagina 2</a>
+        <br>
+        <a href="/home/oscar/ejercicio1/carpeta2/pagina3.html" target="_blank">Página 3</a>
+    </div>
+</body>
+</html>
+<a href="pagina.html">Ir a la página</a>
+
+</html>
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- Configuración básica de la página -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Título que aparece en la pestaña del navegador -->
+    <title>Inicio al HTML</title>
+
+    <!-- Estilos CSS para mejorar el diseño de la página -->
+    <style>
+        /* Quitamos los márgenes y espacios predeterminados */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Diseño general de la página */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eeeeee;
+            color: #222222;
+            line-height: 1.6;
+        }
+
+        /* Cabecera principal */
+        header {
+            background-color: #292929;
+            color: white;
+            text-align: center;
+            padding: 30px 15px;
+        }
+
+        header h1 {
+            font-size: 32px;
+            margin-bottom: 5px;
+        }
+
+        /* Menú de navegación */
+        nav {
+            background-color: #414141;
+            text-align: center;
+            padding: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #cccccc;
+            text-decoration: underline;
+        }
+
+        /* Contenido principal */
+        main {
+            width: 90%;
+            max-width: 900px;
+            margin: 35px auto;
+        }
+
+        /* Sección de bienvenida */
+        .bienvenida {
+            background-color: white;
+            text-align: center;
+            padding: 35px 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px #00000015;
+        }
+
+        .bienvenida h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            text-decoration: underline;
+        }
+
+        .bienvenida p {
+            margin-bottom: 10px;
+        }
+
+        /* Contenedor de las tarjetas */
+        .contenedor-paginas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        /* Tarjetas de cada página */
+        .tarjeta {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            flex: 1;
+            min-width: 230px;
+            box-shadow: 0 3px 10px #00000015;
+        }
+
+        .tarjeta h3 {
+            margin-bottom: 10px;
+        }
+
+        .tarjeta p {
+            margin-bottom: 20px;
+        }
+
+        /* Enlaces con apariencia de botones */
+        .boton {
+            display: inline-block;
+            background-color: #292929;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .boton:hover {
+            background-color: #555555;
+        }
+
+        /* Pie de página */
+        footer {
+            background-color: #292929;
+            color: white;
+            text-align: center;
+            padding: 18px;
+            margin-top: 35px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Cabecera de la página -->
+    <header>
+        <h1>Mi primera página web</h1>
+        <p>Aprendiendo HTML paso a paso</p>
+    </header>
+
+    <!-- Menú de navegación -->
+    <nav>
+        <a href="index.html">Inicio</a>
+
+        <a href="./carpeta1/pagina2.html"
+           target="_blank"
+           rel="noopener noreferrer">Página 2</a>
+
+        <a href="./carpeta2/pagina3.html"
+           target="_blank"
+           rel="noopener noreferrer">Página 3</a>
+    </nav>
+
+    <!-- Contenido principal de la página -->
+    <main>
+
+        <!-- Presentación de la página de inicio -->
+        <section class="bienvenida">
+            <h2>INICIO</h2>
+
+            <p>
+                Esta es la página de inicio, ubicada en la carpeta ejercicio1.
+            </p>
+
+            <p>
+                Desde aquí puedes acceder a las otras páginas de mi ejercicio.
+            </p>
+        </section>
+
+        <!-- Tarjetas para acceder a las demás páginas -->
+        <section class="contenedor-paginas">
+
+            <!-- Primera tarjeta -->
+            <div class="tarjeta">
+                <h3>Página 2</h3>
+
+                <p>
+                    Accede a la segunda página de mi proyecto HTML.
+                </p>
+
+                <a class="boton"
+                   href="./carpeta1/pagina2.html"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    Ir a la página 2
+                </a>
+            </div>
+
+            <!-- Segunda tarjeta -->
+            <div class="tarjeta">
+                <h3>Página 3</h3>
+
+                <p>
+                    Accede a la tercera página de mi proyecto HTML.
+                </p>
+
+                <a class="boton"
+                   href="./carpeta2/pagina3.html"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    Ir a la página 3
+                </a>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Pie de página -->
+    <footer>
+        <p>Mi primera página web | Ejercicio de HTML</p>
+    </footer>
+
+</body>
+</html>
+<a href="pagina.html">Ir a la página</a>
+<abbr title="Hypertext Markup Language">HTML</abbr> es un lenguaje de marcado que se utiliza para estructurar y presentar contenido en la web.
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- Configuración básica de la página -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Título que aparece en la pestaña del navegador -->
+    <title>Inicio al HTML</title>
+
+    <!-- Estilos CSS para mejorar el diseño de la página -->
+    <style>
+        /* Selector universal para limpiar márgenes y padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Diseño general de la página */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eeeeee;
+            color: #222222;
+            line-height: 1.6;
+        }
+
+        /* Cabecera principal */
+        header {
+            background-color: #292929;
+            color: white;
+            text-align: center;
+            padding: 30px 15px;
+        }
+
+        header h1 {
+            font-size: 32px;
+            margin-bottom: 5px;
+        }
+
+        /* Menú de navegación */
+        nav {
+            background-color: #414141;
+            text-align: center;
+            padding: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #cccccc;
+            text-decoration: underline;
+        }
+
+        /* Contenido principal */
+        main {
+            width: 90%;
+            max-width: 900px;
+            margin: 35px auto;
+        }
+
+        /* Sección de bienvenida */
+        .bienvenida {
+            background-color: white;
+            text-align: center;
+            padding: 35px 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .bienvenida h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            text-decoration: underline;
+        }
+
+        .bienvenida p {
+            margin-bottom: 10px;
+        }
+
+        /* Contenedor de las tarjetas */
+        .contenedor-paginas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        /* Tarjetas de cada página */
+        .tarjeta {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            flex: 1;
+            min-width: 230px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        /* Estilo para las imágenes dentro de las tarjetas */
+        .tarjeta img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        /* Efecto visual al pasar el ratón por encima de la imagen */
+        .tarjeta img:hover {
+            transform: scale(1.03);
+        }
+
+        .tarjeta h3 {
+            margin-bottom: 10px;
+        }
+
+        .tarjeta p {
+            margin-bottom: 20px;
+        }
+
+        /* Enlaces con apariencia de botones */
+        .boton {
+            display: inline-block;
+            background-color: #292929;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .boton:hover {
+            background-color: #555555;
+        }
+
+        /* Pie de página */
+        footer {
+            background-color: #292929;
+            color: white;
+            text-align: center;
+            padding: 18px;
+            margin-top: 35px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Cabecera de la página -->
+    <header>
+        <h1>Mi primera página web</h1>
+        <p>Aprendiendo HTML paso a paso</p>
+    </header>
+
+    <!-- Menú de navegación -->
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="./carpeta1/pagina2.html" target="_blank" rel="noopener noreferrer">Página 2</a>
+        <a href="./carpeta2/pagina3.html" target="_blank" rel="noopener noreferrer">Página 3</a>
+    </nav>
+
+    <!-- Contenido principal de la página -->
+    <main>
+
+        <!-- Presentación de la página de inicio -->
+        <section class="bienvenida">
+            <h2>INICIO</h2>
+            <p>
+                Esta es la página de inicio, ubicada en la carpeta ejercicio1.
+            </p>
+            <p>
+                Desde aquí puedes acceder a las otras páginas de mi ejercicio de <abbr title="Hypertext Markup Language">HTML</abbr>.
+            </p>
+        </section>
+
+        <!-- Tarjetas para acceder a las demás páginas -->
+        <section class="contenedor-paginas">
+
+            <!-- Primera tarjeta con imagen enlazada -->
+            <div class="tarjeta">
+                <a href="./carpeta1/pagina2.html" target="_blank" rel="noopener noreferrer">
+                    <img src="./carpeta1/imagen2.jpg" alt="Ir a la página 2">
+                </a>
+                <h3>Página 2</h3>
+                <p>Accede a la segunda página de mi proyecto HTML.</p>
+                <a class="boton" href="./carpeta1/pagina2.html" target="_blank" rel="noopener noreferrer">
+                    Ir a la página 2
+                </a>
+            </div>
+
+            <!-- Segunda tarjeta con imagen enlazada -->
+            <div class="tarjeta">
+                <a href="./carpeta2/pagina3.html" target="_blank" rel="noopener noreferrer">
+                    <img src="./carpeta2/imagen3.jpg" alt="Ir a la página 3">
+                </a>
+                <h3>Página 3</h3>
+                <p>Accede a la tercera página de mi proyecto HTML.</p>
+                <a class="boton" href="./carpeta2/pagina3.html" target="_blank" rel="noopener noreferrer">
+                    Ir a la página 3
+                </a>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Pie de página -->
+    <footer>
+        <p>Mi primera página web | Ejercicio de HTML</p>
+    </footer>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- Configuración básica de la página -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Título que aparece en la pestaña del navegador -->
+    <title>Inicio al HTML</title>
+
+    <!-- Estilos CSS para mejorar el diseño de la página -->
+    <style>
+        /* Quitamos los márgenes y espacios predeterminados (Corregido el selector *) */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Diseño general de la página */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eeeeee;
+            color: #222222;
+            line-height: 1.6;
+        }
+
+        /* Cabecera principal */
+        header {
+            background-color: #292929;
+            color: white;
+            text-align: center;
+            padding: 30px 15px;
+        }
+
+        header h1 {
+            font-size: 32px;
+            margin-bottom: 5px;
+        }
+
+        /* Menú de navegación */
+        nav {
+            background-color: #414141;
+            text-align: center;
+            padding: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #cccccc;
+            text-decoration: underline;
+        }
+
+        /* Contenido principal */
+        main {
+            width: 90%;
+            max-width: 900px;
+            margin: 35px auto;
+        }
+
+        /* Sección de bienvenida */
+        .bienvenida {
+            background-color: white;
+            text-align: center;
+            padding: 35px 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .bienvenida h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            text-decoration: underline;
+        }
+
+        .bienvenida p {
+            margin-bottom: 10px;
+        }
+
+        /* Contenedor de las tarjetas */
+        .contenedor-paginas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        /* Tarjetas de cada página */
+        .tarjeta {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            flex: 1;
+            min-width: 230px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        /* Estilo para las imágenes dentro de las tarjetas */
+        .tarjeta img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        /* Efecto visual al pasar el ratón por encima de la imagen */
+        .tarjeta img:hover {
+            transform: scale(1.03);
+        }
+
+        .tarjeta h3 {
+            margin-bottom: 10px;
+        }
+
+        .tarjeta p {
+            margin-bottom: 20px;
+        }
+
+        /* Enlaces con apariencia de botones */
+        .boton {
+            display: inline-block;
+            background-color: #292929;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .boton:hover {
+            background-color: #555555;
+        }
+
+        /* Pie de página */
+        footer {
+            background-color: #292929;
+            color: white;
+            text-align: center;
+            padding: 18px;
+            margin-top: 35px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Cabecera de la página -->
+    <header>
+        <h1>Mi primera página web</h1>
+        <p>Aprendiendo HTML paso a paso</p>
+    </header>
+
+    <!-- Menú de navegación -->
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="./carpeta1/pagina2.html" target="_blank" rel="noopener noreferrer">Página 2</a>
+        <a href="./carpeta2/pagina3.html" target="_blank" rel="noopener noreferrer">Página 3</a>
+    </nav>
+
+    <!-- Contenido principal de la página -->
+    <main>
+
+        <!-- Presentación de la página de inicio -->
+        <section class="bienvenida">
+            <h2>INICIO</h2>
+            <p>
+                Esta es la página de inicio, ubicada en la carpeta ejercicio1.
+            </p>
+            <p>
+                Desde aquí puedes acceder a las otras páginas de mi ejercicio de <abbr title="Hypertext Markup Language">HTML</abbr>.
+            </p>
+        </section>
+
+        <!-- Tarjetas para acceder a las demás páginas -->
+        <section class="contenedor-paginas">
+
+            <!-- Primera tarjeta con imagen enlazada -->
+            <div class="tarjeta">
+                <a href="./carpeta1/pagina2.html" target="_blank" rel="noopener noreferrer">
+                    <!-- Cambia 'imagen2.jpg' por la ruta de tu imagen real -->
+                    <img src="./carpeta1/imagen2.jpg" alt="Ir a la página 2">
+                </a>
+                <h3>Página 2</h3>
+                <p>Accede a la segunda página de mi proyecto HTML.</p>
+                <a class="boton" href="./carpeta1/pagina2.html" target="_blank" rel="noopener noreferrer">
+                    Ir a la página 2
+                </a>
+            </div>
+
+            <!-- Segunda tarjeta con imagen enlazada -->
+            <div class="tarjeta">
+                <a href="./carpeta2/pagina3.html" target="_blank" rel="noopener noreferrer">
+                    <!-- Cambia 'imagen3.jpg' por la ruta de tu imagen real -->
+                    <img src="./carpeta2/imagen3.jpg" alt="Ir a la página 3">
+                </a>
+                <h3>Página 3</h3>
+                <p>Accede a la tercera página de mi proyecto HTML.</p>
+                <a class="boton" href="./carpeta2/pagina3.html" target="_blank" rel="noopener noreferrer">
+                    Ir a la página 3
+                </a>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Pie de página -->
+    <footer>
+        <p>Mi primera página web | Ejercicio de HTML</p>
+    </footer>
+
+</body>
+</html>
